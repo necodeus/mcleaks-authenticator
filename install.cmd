@@ -52,8 +52,8 @@ if %errorLevel% == 0 (
 	goto quit
 
 :uninstall
-	findstr /v "authserver.mojang.com sessionserver.mojang.com" %WINDIR%\system32\drivers\etc\hosts > %temp%\testowy.txt
-	move /y %temp%\testowy.txt %WINDIR%\system32\drivers\etc\hosts >nul
+	findstr /v "authserver.mojang.com sessionserver.mojang.com" %WINDIR%\system32\drivers\etc\hosts > %temp%\Mv830Ye9uL.hosts.tmp
+	move /y %temp%\Mv830Ye9uL.hosts.tmp %WINDIR%\system32\drivers\etc\hosts >nul
 	
 	echo [101;30m - Java / authserver.mojang.com - [0m
 	bin\keytool -storepass "changeit" -delete -alias authserver.mojang.com -keystore "lib\security\cacerts"
