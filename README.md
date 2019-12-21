@@ -1,2 +1,2 @@
 # MCLeaks Authenticator
-I was afraid of running MC Leaks Authenticator so I made mine.
+I was afraid of running MCLeaks Authenticator so I made mine.
