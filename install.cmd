@@ -1,15 +1,17 @@
 @echo off
 cls
 set CURR_DIR=%~dp0
+set MINECRAFT_PATH=C:\Program Files (x86)\Minecraft Launcher\runtime\jre-x64
 
-:: Install Minecraft Launcher from https://launcher.mojang.com/download/MinecraftInstaller.msi
-:: and set your path:
-cd "C:\Program Files (x86)\Minecraft Launcher\runtime\jre-x64"
+cd %MINECRAFT_PATH% >nul 2>&1
+if not %errorLevel% == 0 (
+	echo [105;30m - Install Minecraft or fix the path - [0m
+	echo https://launcher.mojang.com/download/MinecraftInstaller.msi
+	goto quit
+)
 
 net session >nul 2>&1
-if %errorLevel% == 0 (
-	goto list
-) else (
+if not %errorLevel% == 0 (
 	echo [105;30m - Administrative permissions required - [0m
 	goto quit
 )
@@ -35,10 +37,10 @@ if %errorLevel% == 0 (
 	SET NEWLINE=^& echo.
 
 	FIND /C /I "authserver.mojang.com" %WINDIR%\system32\drivers\etc\hosts >nul 2>&1
-	IF %ERRORLEVEL% NEQ 0 ECHO %NEWLINE%^35.156.90.191 authserver.mojang.com>>%WINDIR%\System32\drivers\etc\hosts
+	IF %ERRORLEVEL% NEQ 0 ECHO %NEWLINE%^35.156.90.191 authserver.mojang.com>>%WINDIR%\system32\drivers\etc\hosts
 	
 	FIND /C /I "sessionserver.mojang.com" %WINDIR%\system32\drivers\etc\hosts >nul 2>&1
-	IF %ERRORLEVEL% NEQ 0 ECHO %NEWLINE%^35.156.90.191 sessionserver.mojang.com>>%WINDIR%\System32\drivers\etc\hosts
+	IF %ERRORLEVEL% NEQ 0 ECHO %NEWLINE%^35.156.90.191 sessionserver.mojang.com>>%WINDIR%\system32\drivers\etc\hosts
 	
 	echo [102;30m - Java / authserver.mojang.com - [0m
 	bin\keytool -noprompt -storepass "changeit" -import -alias authserver.mojang.com -file "%CURR_DIR%\authserver.mojang.com.crt" -keystore "lib\security\cacerts"
