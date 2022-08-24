@@ -1,5 +1,7 @@
 # mcleaks-authenticator
 
+Skrypt wystawiony poglądowo, nie używać
+
 1. Kieruje oficjalne domeny Mojang na serwery MCLeaks.
 
 ```
